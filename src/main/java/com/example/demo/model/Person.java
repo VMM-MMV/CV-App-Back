@@ -34,8 +34,7 @@ public class Person {
         A1, A2, B1, B2, C1, C2, nativeSpeaker, workingKnowledge
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_id_seq")
-    @SequenceGenerator(name = "person_id_seq", sequenceName = "person_id_seq", allocationSize = 1, initialValue = 1000)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(length = 25)
     private String name;
