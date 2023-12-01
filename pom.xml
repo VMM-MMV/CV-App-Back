@@ -22,6 +22,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.29</version> <!-- Use the latest version available -->
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
@@ -56,11 +61,19 @@
 			<version>20231013</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itext7-core</artifactId>
-			<version>8.0.1</version>
-		</dependency>
+        <!-- iText 7 Kernel dependency -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>7.2.3</version> <!-- Replace with the latest version -->
+        </dependency>
+
+        <!-- iText 7 Layout dependency -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>7.2.3</version> <!-- Replace with the latest version -->
+        </dependency>
 
 		<dependency>
 			<groupId>org.jsoup</groupId>
