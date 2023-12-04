@@ -18,9 +18,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Close Port 80 Services
+    - name: Close Port 8080 Services
       run: |
-        PIDS=$(sudo lsof -t -i:80 2>/dev/null) || true
+        PIDS=$(sudo lsof -t -i:8080 2>/dev/null) || true
         if [ -n "$PIDS" ]; then 
           sudo kill -9 $PIDS
         else 
@@ -39,9 +39,9 @@ jobs:
       run: rm -rf /home/ubuntu/back/_work/CV-App-Back/CV-App-Back/target
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Close Port 80 Services
+    - name: Close Port 8080 Services
       run: |
-        PIDS=$(sudo lsof -t -i:80 2>/dev/null) || true
+        PIDS=$(sudo lsof -t -i:8080 2>/dev/null) || true
         if [ -n "$PIDS" ]; then 
           sudo kill -9 $PIDS
         else 
