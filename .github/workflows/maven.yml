@@ -24,7 +24,7 @@ jobs:
         if [ -n "$PIDS" ]; then 
           sudo kill -9 $PIDS
         else 
-          echo "No processes found on port 80"
+          echo "No processes found on port 8080"
         fi
 
         
@@ -45,7 +45,7 @@ jobs:
         if [ -n "$PIDS" ]; then 
           sudo kill -9 $PIDS
         else 
-          echo "No processes found on port 80"
+          echo "No processes found on port 8080"
         fi
 
     - name: Run Jar File
