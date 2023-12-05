@@ -24,7 +24,7 @@ jobs:
           echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> $GITHUB_ENV
           echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> $GITHUB_ENV
           echo "DATABASE_DIALECT=${{ secrets.DATABASE_DIALECT }}" >> $GITHUB_ENV
-          echo "DATABASE_DRIVER=${{ secrets.DATABASE_DRIVER }} >> $GITHUB_ENV
+          echo "DATABASE_DRIVER=${{ secrets.DATABASE_DRIVER }}" >> $GITHUB_ENV
       shell: bash
       
     - name: Close Port 8080 Services
