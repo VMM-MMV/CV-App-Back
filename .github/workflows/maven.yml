@@ -10,7 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "cloud/aws" ]
+    branches: [ "main" ]
 
 jobs:
   build:
