@@ -49,12 +49,12 @@ jobs:
       
     - name: Replace placeholders in application.properties
       run: |
-        sed -i "s/\${DATABASE_URL}/${DATABASE_URL}/g" src/main/resources/application.properties
-        sed -i "s/\${DATABASE_USERNAME}/${DATABASE_USERNAME}/g" src/main/resources/application.properties
-        sed -i "s/\${DATABASE_PASSWORD}/${DATABASE_PASSWORD}/g" src/main/resources/application.properties
-        sed -i "s/\${DATABASE_DIALECT}/${DATABASE_DIALECT}/g" src/main/resources/application.properties
-        sed -i "s/\${DATABASE_DRIVER}/${DATABASE_DRIVER}/g" src/main/resources/application.properties
-        
+        sed -i "s|\${DATABASE_URL}|${{ secrets.DATABASE_URL }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_USERNAME}|${{ secrets.DATABASE_USERNAME }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_PASSWORD}|${{ secrets.DATABASE_PASSWORD }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_DIALECT}|${{ secrets.DATABASE_DIALECT }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_DRIVER}|${{ secrets.DATABASE_DRIVER }}|g" src/main/resources/application.properties
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Close Port 8080 Services
