@@ -18,6 +18,15 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Set environment variables for application.properties
+      run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> $GITHUB_ENV
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> $GITHUB_ENV
+          echo "DATABASE_DIALECT=${{ secrets.DATABASE_DIALECT }}" >> $GITHUB_ENV
+          echo "DATABASE_DRIVER=${{ secrets.DATABASE_DRIVER }} >> $GITHUB_ENV
+      shell: bash
+      
     - name: Close Port 8080 Services
       run: |
         PIDS=$(sudo lsof -t -i:8080 2>/dev/null) || true
