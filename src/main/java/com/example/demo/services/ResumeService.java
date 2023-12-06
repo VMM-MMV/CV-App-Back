@@ -193,8 +193,7 @@ public class ResumeService implements Runnable {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                // Thread.sleep(86400000);
-                Thread.sleep(5000);
+                Thread.sleep(18000000);
             }
         } catch (RuntimeException | InterruptedException e) {
             System.out.println("Thread was interrupted!");
