@@ -26,7 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ResumeService {
+public class ResumeService implements Runnable {
     private final Gmail serviceGmail;
     private final Drive driveService;
 
@@ -183,8 +183,20 @@ public class ResumeService {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        new ResumeService().listMessagesWithAttachments();
-        new ResumeService().deleteDuplicateFilesInDrive();
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                try {
+                    new ResumeService().listMessagesWithAttachments();
+                    new ResumeService().deleteDuplicateFilesInDrive();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                Thread.sleep(86400000);
+            }
+        } catch (RuntimeException | InterruptedException e) {
+            System.out.println("Thread was interrupted!");
+        }
     }
 }
