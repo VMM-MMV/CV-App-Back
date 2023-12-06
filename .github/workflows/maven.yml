@@ -10,7 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "db/planetscale" ]
+    branches: [ "main" ]
 
 jobs:
   build:
