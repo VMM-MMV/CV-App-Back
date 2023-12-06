@@ -10,7 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "db/planetscale" ]
 
 jobs:
   build:
@@ -37,6 +37,24 @@ jobs:
         cache: maven
     - name: Delete old build
       run: rm -rf /home/ubuntu/back/_work/CV-App-Back/CV-App-Back/target
+      
+    - name: Set environment variables for application.properties
+      run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> $GITHUB_ENV
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> $GITHUB_ENV
+          echo "DATABASE_DIALECT=${{ secrets.DATABASE_DIALECT }}" >> $GITHUB_ENV
+          echo "DATABASE_DRIVER=${{ secrets.DATABASE_DRIVER }}" >> $GITHUB_ENV
+      shell: bash
+      
+    - name: Replace placeholders in application.properties
+      run: |
+        sed -i "s|\${DATABASE_URL}|${{ secrets.DATABASE_URL }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_USERNAME}|${{ secrets.DATABASE_USERNAME }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_PASSWORD}|${{ secrets.DATABASE_PASSWORD }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_DIALECT}|${{ secrets.DATABASE_DIALECT }}|g" src/main/resources/application.properties
+        sed -i "s|\${DATABASE_DRIVER}|${{ secrets.DATABASE_DRIVER }}|g" src/main/resources/application.properties
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Close Port 8080 Services
